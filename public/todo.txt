@@ -1,0 +1,4 @@
+1 Make a signup page
+2 Make a login page
+3 Make a home page
+4 Make a new posts page
