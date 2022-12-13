@@ -5,10 +5,11 @@ function App() {
 
   useEffect(() =>{
     const fetchPosts = async () =>{
-      const resp = await fetch('https://jsonplaceholder.typicode.com/todos');
+      const resp = await fetch('https://strangers-things.herokuapp.com/api/2004-FTB-ET-WEB-PT/posts');
       const data = await resp.json();
-      console.log(data);
-      setPosts(data)
+      const posts = data.data.posts
+      console.log(posts);
+      setPosts(posts)
     }
 
     fetchPosts();
@@ -16,10 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <p>Hello World</p>
       {
        posts.map((post) =>{
-         return <div key={post.id}>
+         return <div key={post._id}>
           <p>{post.title}</p>
          </div>
         })
