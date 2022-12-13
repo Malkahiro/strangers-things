@@ -1,0 +1,1 @@
+export const api = 'https://strangers-things.herokuapp.com/api/2004-FTB-ET-WEB-PT/';
