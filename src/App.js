@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Posts from "./Components/Posts/Posts";
 import {api} from "./API/api"
+import Login from "./Components/Login/Login";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -19,7 +20,8 @@ function App() {
 
   return (
     <div className="App">
-      <Posts posts={posts}/>
+      <Login />
+      {/* <Posts posts={posts}/> */}
     </div>
   );
 }
