@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Posts from "./Components/Posts/Posts";
+// import Posts from "./Components/Posts/Posts";
 import {api} from "./API/api"
-// import Login from "./Components/Login/Login";
+import Login from "./Components/Login/Login";
 // import Register from "./Components/Register/Register";
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
       const resp = await fetch(`${api}posts`);
       const data = await resp.json();
       const posts = data.data.posts
-      console.log(posts);
       setPosts(posts)
     }
 
@@ -21,7 +20,8 @@ function App() {
 
   return (
     <div className="App">
-      <Posts posts={posts}/>
+      <Login />
+      {/* <Posts posts={posts}/> */}
     </div>
   );
 }
