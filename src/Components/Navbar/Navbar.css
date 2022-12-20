@@ -1,0 +1,10 @@
+.nav-bar{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.link{
+    margin-right: 10px;
+    text-decoration: none;
+}
