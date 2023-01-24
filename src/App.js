@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
 import {getPosts} from "./api/api"
 import Posts from './Components/Posts';
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import Register from './Components/Register';
 
 function App() {
   
@@ -16,9 +18,15 @@ function App() {
   },[])
 
   return (
+    <BrowserRouter>
     <div className="App">
-      <Posts posts={posts} />
+      <Routes>
+      <Route path={"/posts"} element={<Posts posts={posts} />} />
+      <Route path={"/register"} element={<Register />} />
+      </Routes>
+
     </div>
+    </BrowserRouter>
   );
 }
 

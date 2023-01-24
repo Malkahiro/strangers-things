@@ -7,6 +7,8 @@ const Register = () => {
     const handleSubmit = (event) =>{
         event.preventDefault();
         registerUser(username, password);
+        setUsername('');
+        setPassword('');
     }
 
     return ( <form onSubmit={handleSubmit}>
