@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState, useEffect} from 'react';
+import {getPosts} from "./api/api"
 
 function App() {
+  
+  const [posts, setPosts] = useState([]);
+
+  useEffect(()=>{
+  getPosts()
+        .then(results =>{
+          setPosts(results)
+          console.log(results);
+        }).catch(error => console.error(error))
+
+  },[])
+
+  const mappedPosts = posts.map(post =>{
+    return <div key={post._id}>
+      <h1>{post.title}</h1>
+      <h2>{post.author.username}</h2>
+    </div>
+  })
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {mappedPosts}
     </div>
   );
 }
