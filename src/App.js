@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {getPosts} from "./api/api"
+import Posts from './Components/Posts';
 
 function App() {
   
@@ -14,16 +15,9 @@ function App() {
 
   },[])
 
-  const mappedPosts = posts.map(post =>{
-    return <div key={post._id}>
-      <h1>{post.title}</h1>
-      <h2>{post.author.username}</h2>
-    </div>
-  })
-  
   return (
     <div className="App">
-      {mappedPosts}
+      <Posts posts={posts} />
     </div>
   );
 }
