@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react';
 import {getPosts} from "./api/api"
 import Posts from './Components/Posts';
 import {BrowserRouter, Route, Routes} from "react-router-dom"
-import Register from './Components/Register';
-import Login from './Components/Login';
+import Register from './Components/Register/Register';
+import Login from './Components/Login/Login';
 
 function App() {
   

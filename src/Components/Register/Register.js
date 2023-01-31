@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {registerUser} from '../api/api'
+import {registerUser} from '../../api/api'
+import "./Register.css"
 const Register = ({handleAuth}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] =useState('');
@@ -13,7 +14,7 @@ const Register = ({handleAuth}) => {
         setPassword('');
     }
 
-    return ( <form onSubmit={handleSubmit}>
+    return ( <form id='register-form' onSubmit={handleSubmit}>
         <label htmlFor="">Username</label>
         <input required min={5} onChange={(event) => setUsername(event.target.value)} 
         type="text" placeholder='Enter a Username' value={username} name={username} />
