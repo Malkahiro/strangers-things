@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { loginUser } from '../../api/api';
+import {Link} from 'react-router-dom'
 import './Login.css'
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
         <input type="password" value={password} onChange={(event) => setPassword(event.target.value)}
          placeholder='Enter your password' />
         <button type='submit'>Login</button>
+        <Link to={"/register"}>Don't have an account? Sign Up</Link>
     </form> );
 }
  

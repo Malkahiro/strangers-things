@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {registerUser} from '../../api/api'
+import {Link} from 'react-router-dom'
 import "./Register.css"
 const Register = ({handleAuth}) => {
     const [username, setUsername] = useState('');
@@ -22,6 +23,8 @@ const Register = ({handleAuth}) => {
         <input required min={5} onChange={(event) => setPassword(event.target.value)} 
         type="password" placeholder='Enter a Password' value={password} name={password} />
         <button type='submit'>Submit</button>
+        <Link to={"/login"}>Already have an account? Sign In</Link>
+
     </form> );
 }
  
