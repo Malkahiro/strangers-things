@@ -13,7 +13,6 @@ function App() {
 
   const handleAuth = (token) =>{
     setAuth(token);
-    console.log(Auth);
   }
 
   useEffect(()=>{
@@ -22,7 +21,6 @@ function App() {
           setPosts(results)
           console.log(results);
         }).catch(error => console.error(error))
-        console.log(Auth);
   },[Auth])
 
   return (
