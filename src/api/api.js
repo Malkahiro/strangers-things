@@ -16,7 +16,7 @@ const url = 'https://strangers-things.herokuapp.com/api/2204-FTB-ET-WEB-PT/';
 
 export const registerUser = async (username, password) =>{
     try{
-        await fetch(`${url}users/register`, {
+       const response =  await fetch(`${url}users/register`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -27,11 +27,11 @@ export const registerUser = async (username, password) =>{
                     password: password
                 }
             })
-        }).then(response => response.json())
-            .then(result => {
-                console.log(result);
-            })
-            .catch(console.error)
+        })
+        
+       const data = response.json();
+       console.log(data);
+       return data; 
     } catch(error){
         console.error(error)
     }

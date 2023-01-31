@@ -1,22 +1,24 @@
 import React, {useState} from 'react'
 import {registerUser} from '../api/api'
-const Register = () => {
+const Register = ({handleAuth}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] =useState('');
 
-    const handleSubmit = (event) =>{
+    const handleSubmit = async (event) =>{
         event.preventDefault();
-        registerUser(username, password);
+        const response = await registerUser(username, password);
+        const token = response.data.token;
+        handleAuth(token);
         setUsername('');
         setPassword('');
     }
 
     return ( <form onSubmit={handleSubmit}>
         <label htmlFor="">Username</label>
-        <input onChange={(event) => setUsername(event.target.value)} 
+        <input required min={5} onChange={(event) => setUsername(event.target.value)} 
         type="text" placeholder='Enter a Username' value={username} name={username} />
         <label htmlFor="">Password</label>
-        <input onChange={(event) => setPassword(event.target.value)} 
+        <input required min={5} onChange={(event) => setPassword(event.target.value)} 
         type="password" placeholder='Enter a Password' value={password} name={password} />
         <button type='submit'>Submit</button>
     </form> );
