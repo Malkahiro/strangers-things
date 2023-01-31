@@ -4,6 +4,7 @@ import Posts from './Components/Posts';
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Navbar />
     <div className="App">
       <Routes>
       <Route path={"/"} element={<Posts posts={posts} />} />

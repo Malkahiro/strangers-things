@@ -1,0 +1,16 @@
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+
+}
+
+#header{
+    margin-left: 10px;
+}
+
+a{
+    margin: 10px;
+    text-decoration: none;
+}
+
