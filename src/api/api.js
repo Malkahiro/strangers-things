@@ -29,11 +29,13 @@ export const registerUser = async (username, password) =>{
             })
         })
         
-       const data = response.json();
-       console.log(data);
-       return data; 
+       const json = await response.json();
+       console.log(json);
+       localStorage.setItem('stranger_things_JWT', json.data.token);
+       console.log(json);
+       return json; 
     } catch(error){
-        console.error(error)
+        console.log(error)
     }
 }
 
@@ -51,9 +53,10 @@ export const loginUser = async (username, password) =>{
                 }
             })
         });
-        const data = response.json();
-        console.log(data);
-        return data;
+        const json = await response.json();
+        localStorage.setItem('stranger_things_JWT', json.data.token);
+        console.log(json);
+        return json;
     } catch(error){
         console.error(error)
     }
@@ -78,9 +81,29 @@ export const addPost = async (Auth, title, description, price, location, willDel
             })
         });
 
-        const data = await response.json();
-        return console.log(data);
+        const json = await response.json();
+        console.log(json);
+        return json;
     } catch(error) {
+        console.error(error)
+    }
+}
+
+export const testAuth = async () =>{
+    try{
+        const token = localStorage.getItem('stranger_things_JWT');
+        const response = await fetch(`${url}test/me`, {
+          method: "GET",
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }  
+        });
+        console.log(response);
+
+        const json = await response.json();
+        console.log(json);
+        return json;
+    } catch(error){
         console.error(error)
     }
 }

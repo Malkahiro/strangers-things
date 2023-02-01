@@ -8,10 +8,9 @@ const Login = ({handleAuth, setIsLoggedIn}) => {
     const [password, setPassword] = useState('');
     const handleLogin = async (event) =>{
         event.preventDefault();
-        const response = await loginUser(username, password);
-        const token = response.data.token;
-        handleAuth(token);
-        console.log(token);
+        const response = await loginUser(username, password)
+        .then(result => handleAuth(result.data.token))
+        console.log(response);
         setIsLoggedIn(true);
         setUsername('');
         setPassword('');

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {getPosts} from "./api/api"
+import {getPosts, testAuth} from "./api/api"
 import Posts from './Components/Posts/Posts';
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Register from './Components/Register/Register';
@@ -11,29 +11,25 @@ function App() {
   
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [Auth, setAuth] = useState("");
-
-  const handleAuth = (token) =>{
-    setAuth(token);
-  }
+  const token = localStorage.getItem('stranger_things_JWT');
 
   useEffect(()=>{
   getPosts()
         .then(results =>{
           setPosts(results)
-          console.log(results);
         }).catch(error => console.error(error))
   },[])
 
   return (
     <BrowserRouter>
     <Navbar />
+    <button onClick={() => testAuth()}>Test Auth</button>
     <div className="App">
       <Routes>
       <Route path={"/"} element={<Posts posts={posts} />} />
       <Route path={"/register"} element={<Register />} />
-      <Route path={'/login'} element={<Login handleAuth={handleAuth} setIsLoggedIn={setIsLoggedIn} />} />
-      <Route path={'/add'} element={<PostForm Auth={Auth} />} />
+      <Route path={'/login'} element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path={'/add'} element={<PostForm token={token} />} />
       </Routes>
 
     </div>

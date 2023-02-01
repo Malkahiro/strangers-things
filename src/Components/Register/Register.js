@@ -20,7 +20,7 @@ const Register = () => {
         <label>Password</label>
         <input required min={5} onChange={(event) => setPassword(event.target.value)} 
         type="password" placeholder='Enter a Password' value={password} name={password} />
-        <button type='submit'>Submit</button>
+        <button type='submit'>Sign Up</button>
         <Link to={"/login"}>Already have an account? Sign In</Link>
 
     </form> );

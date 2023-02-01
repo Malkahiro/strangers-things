@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { addPost } from "../../api/api";
 import './PostForm.css'
 
-const PostForm = ({Auth}) => {
+const PostForm = ({token}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -10,9 +10,9 @@ const PostForm = ({Auth}) => {
     const [willDeliver, setWillDeliver] = useState(false);
 
 
-    const handleCreate = async (event, Auth, title, description, price, location, willDeliver) =>{
+    const handleCreate = async (event, title, description, price, location, willDeliver) =>{
         event.preventDefault();
-        const response = await addPost(Auth, title, description, price, location, willDeliver);
+        const response = await addPost(token, title, description, price, location, willDeliver);
         console.log(response);
         setTitle('');
         setDescription('');
@@ -20,7 +20,6 @@ const PostForm = ({Auth}) => {
         setLocation('');
         setWillDeliver('');
     }
-
     return ( 
         <form id="add-form" onSubmit={handleCreate}>
             <label>Title</label>
