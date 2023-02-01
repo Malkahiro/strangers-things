@@ -3,23 +3,24 @@ import { loginUser } from '../../api/api';
 import {Link} from 'react-router-dom'
 import './Login.css'
 
-const Login = () => {
+const Login = ({handleAuth, setIsLoggedIn}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async (event) =>{
         event.preventDefault();
         const response = await loginUser(username, password);
-        console.log(response);
         const token = response.data.token;
+        handleAuth(token);
         console.log(token);
+        setIsLoggedIn(true);
         setUsername('');
         setPassword('');
     }
     return ( <form id='login-form' onSubmit={handleLogin}>
-        <label htmlFor="">Username</label>
+        <label>Username</label>
         <input type="text" value={username} onChange={(event) => setUsername(event.target.value)}
          placeholder='Enter your username' />
-        <label htmlFor="">Password</label>
+        <label>Password</label>
         <input type="password" value={password} onChange={(event) => setPassword(event.target.value)}
          placeholder='Enter your password' />
         <button type='submit'>Login</button>

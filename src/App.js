@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
+import PostForm from './Components/Posts/PostForm';
 
 function App() {
   
@@ -22,7 +23,7 @@ function App() {
           setPosts(results)
           console.log(results);
         }).catch(error => console.error(error))
-  },[Auth])
+  },[])
 
   return (
     <BrowserRouter>
@@ -30,8 +31,9 @@ function App() {
     <div className="App">
       <Routes>
       <Route path={"/"} element={<Posts posts={posts} />} />
-      <Route path={"/register"} element={<Register handleAuth={handleAuth} />} />
-      <Route path='/login' element={<Login />} />
+      <Route path={"/register"} element={<Register />} />
+      <Route path={'/login'} element={<Login handleAuth={handleAuth} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path={'/add'} element={<PostForm Auth={Auth} />} />
       </Routes>
 
     </div>

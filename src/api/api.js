@@ -58,3 +58,29 @@ export const loginUser = async (username, password) =>{
         console.error(error)
     }
 }
+
+export const addPost = async (Auth, title, description, price, location, willDeliver) =>{
+    try{
+        const response = await fetch(`${url}posts`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': Auth
+            },
+            body: JSON.stringify({
+                post: {
+                    title: title,
+                    description: description,
+                    price: price,
+                    location: location,
+                    willDeliver: willDeliver
+                }
+            })
+        });
+
+        const data = await response.json();
+        return console.log(data);
+    } catch(error) {
+        console.error(error)
+    }
+}
