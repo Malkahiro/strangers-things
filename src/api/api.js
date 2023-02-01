@@ -65,7 +65,7 @@ export const addPost = async (Auth, title, description, price, location, willDel
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': Auth
+                'Authorization': `Bearer ${Auth}`
             },
             body: JSON.stringify({
                 post: {
