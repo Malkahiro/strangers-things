@@ -8,20 +8,19 @@ import Navbar from './Components/Navbar/Navbar';
 import PostForm from './Components/Posts/PostForm';
 
 function App() {
-  const token = localStorage.getItem('stranger_things_JWT');
+  // const token = localStorage.getItem('stranger_things_JWT');
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   useEffect(()=>{
-    setIsLoggedIn(!!token);
+    setIsLoggedIn(!!localStorage.getItem("stranger_things_JWT"));
   getPosts()
         .then(results =>{
           setPosts(results)
         }).catch(error => console.error(error))
-  },[token])
-
-  console.log('this is token', token);
+  },[])
+;
 
   return (
     <BrowserRouter>
@@ -35,7 +34,7 @@ function App() {
       <Route path={"/"} element={isLoggedIn ? <Posts posts={posts} /> : <p>Please Log In...</p>} />
       <Route path={"/register"} element={<Register />} />
       <Route path={'/login'} element={<Login />} />
-      <Route path={'/add'} element={<PostForm token={token} />} />
+      <Route path={'/add'} element={<PostForm />} />
       </Routes>
 
     </div>
