@@ -3,15 +3,13 @@ import { loginUser } from '../../api/api';
 import {Link} from 'react-router-dom'
 import './Login.css'
 
-const Login = ({handleAuth, setIsLoggedIn}) => {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async (event) =>{
         event.preventDefault();
-        const response = await loginUser(username, password)
-        .then(result => handleAuth(result.data.token))
+        const response = await loginUser(username, password);
         console.log(response);
-        setIsLoggedIn(true);
         setUsername('');
         setPassword('');
     }

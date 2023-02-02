@@ -62,21 +62,19 @@ export const loginUser = async (username, password) =>{
     }
 }
 
-export const addPost = async (Auth, title, description, price, location, willDeliver) =>{
+export const addPost = async (token, title, description, price) =>{
     try{
         const response = await fetch(`${url}posts`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Auth}`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 post: {
                     title: title,
                     description: description,
-                    price: price,
-                    location: location,
-                    willDeliver: willDeliver
+                    price: price
                 }
             })
         });
