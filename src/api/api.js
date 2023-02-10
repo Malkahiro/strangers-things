@@ -7,7 +7,6 @@ const url = 'https://strangers-things.herokuapp.com/api/2204-FTB-ET-WEB-PT/';
         const response = await fetch(`${url}posts`);
         const data = await response.json();
         const posts = await data.data.posts;
-        console.log("api posts", posts);
         return posts;
     } catch(error){
         throw error
@@ -30,9 +29,7 @@ export const registerUser = async (username, password) =>{
         })
         
        const json = await response.json();
-       console.log(json);
        localStorage.setItem('stranger_things_JWT', json.data.token);
-       console.log(json);
        return json; 
     } catch(error){
         console.log(error)
@@ -55,7 +52,6 @@ export const loginUser = async (username, password) =>{
         });
         const json = await response.json();
         localStorage.setItem('stranger_things_JWT', json.data.token);
-        console.log(json);
         return json;
     } catch(error){
         console.error(error)
@@ -82,10 +78,37 @@ export const addPost = async (token, title, description, price, location, willDe
         });
 
         const json = await response.json();
-        console.log(json);
         return json;
     } catch(error) {
         console.error(error)
+    }
+}
+
+export const updatePost = async (postId, token, title, description, price, location, willDeliver) =>{
+    try{
+        const response = await fetch(`${url}posts/${postId}`, 
+        {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                post: {
+                    title: title,
+                    description: description,
+                    price: price,
+                    location: location,
+                    willDeliver: willDeliver
+                }
+            })
+        });
+
+        const json = await response.json();
+        console.log(json);
+        return json;
+    } catch(error){
+        console.error(error);
     }
 }
 
@@ -98,11 +121,9 @@ export const testAuth = async () =>{
             'Authorization': `Bearer ${token}`
           }  
         });
-        console.log(response);
-
         const json = await response.json();
         console.log(json);
-        return json;
+        return json.success;
     } catch(error){
         console.error(error)
     }

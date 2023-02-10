@@ -3,13 +3,14 @@ import { loginUser } from '../../api/api';
 import {Link} from 'react-router-dom'
 import './Login.css'
 
-const Login = () => {
+const Login = ({isValidJWT}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async (event) =>{
         event.preventDefault();
         const response = await loginUser(username, password);
         console.log(response);
+        isValidJWT();
         setUsername('');
         setPassword('');
     }
