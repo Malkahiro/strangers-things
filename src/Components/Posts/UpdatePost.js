@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import './PostForm.css'
-import updatePost from '../../api/api'
-const UpdatePost = () => {
+import {updatePost} from '../../api/api'
+const UpdatePost = ({posts}) => {
+    const {POST_ID} = useParams();
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -10,17 +12,9 @@ const UpdatePost = () => {
     const [willDeliver, setWillDeliver] = useState(false);
     const token = localStorage.getItem("stranger_things_JWT");
 
-    // const handleSubmit = async (event) =>{
-    //     event.preventDefault();
-    //     const response = await updatePost(postId, token, title, description, price, location, willDeliver);
-    //     setTitle("");
-    //     setDescription("");
-    //     setPrice("");
-    //     setLocation("");
-    //     setWillDeliver(false);
-    // }
-
-    return ( <form id='add-form'>
+    const mappedPosts = posts.filter((post) => post._id === POST_ID).map((post) =>{
+        return( 
+<form id='add-form' onSubmit={handleSubmit}>
         <label>Title</label>
         <input type="text" value={title} placeholder='Update Title' onChange={(event) => setTitle(event.target.value)} />
         <label>Description</label>
@@ -32,7 +26,22 @@ const UpdatePost = () => {
         <label>willDeliver</label>
         <input type="checkbox" value={willDeliver} onChange={setWillDeliver(!willDeliver)} />
         <button type="submit">Update</button>
-    </form> );
+    </form>
+        )
+     })
+
+    const handleSubmit = async (event) =>{
+        event.preventDefault();
+        const response = await updatePost(POST_ID, token, title, description, price, location, willDeliver);
+        console.log(response);
+        setTitle("");
+        setDescription("");
+        setPrice("");
+        setLocation("");
+        setWillDeliver(false);
+    }
+
+    return ( {mappedPosts} );
 }
  
 export default UpdatePost;

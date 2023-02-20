@@ -123,7 +123,7 @@ export const testAuth = async () =>{
         });
         const json = await response.json();
         console.log(json);
-        return json.success;
+        return json;
     } catch(error){
         console.error(error)
     }
